@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:xforms="http://www.w3.org/2002/xforms"
 	  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-		xmlns:ev="http://www.w3.org/2001/xml-events"
+	  xmlns:ev="http://www.w3.org/2001/xml-events"
 	  xmlns:widget="http://orbeon.org/oxf/xml/widget">
 
 	<head>
