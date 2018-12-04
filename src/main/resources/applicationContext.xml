@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <bean name="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jinform.properties"/>
+    </bean>
+
+    <!--  XForm Rendering -->
+    <bean name="preProcessXsl" class="org.jinform.core.rendering.XslDefinition">
+        <constructor-arg value="/rendering/preProcessXsl.xsl"/>
+    </bean>
+
+    <bean name="postProcessXForms" class="org.jinform.core.rendering.XslDefinition">
+        <constructor-arg value="/rendering/postProcessXForms.xsl"/>
+    </bean>
+
+    <bean name="rendererFactory" class="org.jinform.core.rendering.XFormsRendererFactory">
+        <constructor-arg ref="preProcessXsl"/>
+        <constructor-arg ref="postProcessXForms"/>
+        <constructor-arg value="${encoding}"/>
+    </bean>
+
+    <bean name="xsnFactory" class="org.jinform.core.model.XsnFactory">
+        <constructor-arg ref="rendererFactory"/>
+    </bean>
+
+    <bean name="formCatalog" class="org.jinform.core.impl.FileFormCatalog">
+        <constructor-arg ref="xsnFactory"/>
+        <constructor-arg value="${formFolder}"/>
+    </bean>
+
+    <!--
+    <bean name="formRefreshMethod" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+        <property name="targetObject" ref="formCatalog" />
+        <property name="targetMethod" value="refreshCatalog" />
+    </bean>
+
+    <bean name="formRefreshTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <property name="delay" value="2000" />
+        <property name="timerTask" ref="formRefreshMethod" />
+        <property name="period" value="${refreshInterval}" />
+    </bean>
+
+    <bean name="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+        <property name="scheduledTimerTasks">
+            <list>
+                <ref bean="formRefreshTask" />
+            </list>
+        </property>
+    </bean>
+    -->
+
+    <bean name="controllerContext" class="org.jinform.server.ControllerContext">
+        <property name="versionNumber" value="0.1"/>
+        <property name="encoding" value="${encoding}"/>
+        <property name="formCatalog" ref="formCatalog"/>
+        <property name="presentationServerHome" value="${presentationServerHome}"/>
+    </bean>
+
+</beans>

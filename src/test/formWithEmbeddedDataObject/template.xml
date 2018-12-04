@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-infoPathSolution name="urn:schemas-microsoft-com:office:infopath:applicationV3:-myXSD-2005-05-20T06-57-42" href="manifest.xsf" solutionVersion="1.0.0.13" productVersion="11.0.6357" PIVersion="1.0.0.0" ?>
+<?mso-application progid="InfoPath.Document"?>
+<my:applicationDataV2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:my="http://schemas.microsoft.com/office/infopath/2003/myXSD/2005-05-20T06:57:42" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+	<my:identification>
+		<my:firstName></my:firstName>
+		<my:lastName></my:lastName>
+		<my:birthDate xsi:nil="true"></my:birthDate>
+		<my:sex></my:sex>
+	</my:identification>
+	<my:previousJobs>
+		<my:employer></my:employer>
+		<my:job></my:job>
+		<my:jobFrom xsi:nil="true"></my:jobFrom>
+		<my:jobTo xsi:nil="true"></my:jobTo>
+	</my:previousJobs>
+</my:applicationDataV2>

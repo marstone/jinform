@@ -1,0 +1,28 @@
+<config xmlns="http://www.orbeon.com/oxf/controller" xmlns:oxf="http://www.orbeon.com/oxf/processors"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" instance-passing="forward">
+
+	<!--
+		Unfortunately it is not possible to use a regular expression as the root of the view name
+		So we force to HTTP which is a problem in case of an SSL environment
+	-->
+	<page id="home" path-info="/jinform/main/([^:]*):(.*)" view="http:///${2}/cp/view?name=main" matcher="oxf:perl5-matcher" />
+
+	<page id="editNew" path-info="/jinform/editNew">
+		<action action="editNew-action.xpl">
+			<result page="viewForm" transform="oxf:xslt">
+				<xsl:transform version="2.0">
+					<xsl:template match="/">
+						<xsl:copy-of select="doc('input:action')" />
+					</xsl:template>
+				</xsl:transform>
+			</result>
+		</action>
+	</page>
+
+	<page id="viewForm" path-info="/jinform/viewForm" view="xforms-view.xpl" />
+
+	<page id="saveData" path-info="/jinform/saveData" view="xforms-save.xpl" />
+
+	<epilogue url="oxf:/config/epilogue.xpl" />
+
+</config>

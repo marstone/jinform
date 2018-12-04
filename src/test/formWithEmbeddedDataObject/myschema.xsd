@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema targetNamespace="http://schemas.microsoft.com/office/infopath/2003/myXSD/2005-05-20T06:57:42" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:my="http://schemas.microsoft.com/office/infopath/2003/myXSD/2005-05-20T06:57:42" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="applicationDataV2">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="my:identification" minOccurs="0"/>
+				<xsd:element ref="my:previousJobs" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:anyAttribute processContents="lax" namespace="http://www.w3.org/XML/1998/namespace"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="identification">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="my:firstName" minOccurs="0"/>
+				<xsd:element ref="my:lastName" minOccurs="0"/>
+				<xsd:element ref="my:birthDate" minOccurs="0"/>
+				<xsd:element ref="my:sex" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="firstName" type="my:requiredString"/>
+	<xsd:element name="lastName" type="my:requiredString"/>
+	<xsd:element name="birthDate" nillable="true" type="xsd:date"/>
+	<xsd:element name="sex" type="xsd:string"/>
+	<xsd:element name="previousJobs">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="my:employer" minOccurs="0"/>
+				<xsd:element ref="my:job" minOccurs="0"/>
+				<xsd:element ref="my:jobFrom" minOccurs="0"/>
+				<xsd:element ref="my:jobTo" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="employer" type="my:requiredString"/>
+	<xsd:element name="job" type="my:requiredString"/>
+	<xsd:element name="jobFrom" nillable="true" type="xsd:date"/>
+	<xsd:element name="jobTo" nillable="true" type="xsd:date"/>
+	<xsd:simpleType name="requiredString">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="requiredAnyURI">
+		<xsd:restriction base="xsd:anyURI">
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
